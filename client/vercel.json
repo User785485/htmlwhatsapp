@@ -1,7 +1,7 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://html-file-manager-api.vercel.app/api/:path*" },
-    { "source": "/uploads/:path*", "destination": "https://html-file-manager-api.vercel.app/uploads/:path*" },
+    { "source": "/api/:path*", "destination": "https://htmlwhatsapp-server.vercel.app/api/:path*" },
+    { "source": "/uploads/:path*", "destination": "https://htmlwhatsapp-server.vercel.app/uploads/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "builds": [

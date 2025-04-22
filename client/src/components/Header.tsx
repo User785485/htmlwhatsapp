@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, Box, Container } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, Container, useTheme, useMediaQuery } from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import StorageIcon from '@mui/icons-material/Storage';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import SearchIcon from '@mui/icons-material/Search';
+import HomeIcon from '@mui/icons-material/Home';
 
 const Header: React.FC = () => {
   const location = useLocation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: '#128C7E' }}>
       <Container maxWidth="xl">
         <Toolbar>
           <Typography
@@ -25,8 +28,8 @@ const Header: React.FC = () => {
               alignItems: 'center'
             }}
           >
-            <StorageIcon sx={{ mr: 1 }} />
-            HTML File Manager
+            <WhatsAppIcon sx={{ mr: 1 }} />
+            WhatsApp Explorer
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
@@ -40,8 +43,9 @@ const Header: React.FC = () => {
                 color: 'white',
                 backgroundColor: location.pathname === '/' ? 'rgba(255,255,255,0.1)' : 'transparent'
               }}
+              startIcon={<HomeIcon />}
             >
-              Dashboard
+              {isMobile ? '' : 'Accueil'}
             </Button>
             <Button
               component={RouterLink}
@@ -53,7 +57,7 @@ const Header: React.FC = () => {
               }}
               startIcon={<UploadFileIcon />}
             >
-              Upload Files
+              {isMobile ? '' : 'Importer'}
             </Button>
             <Button
               component={RouterLink}
@@ -65,7 +69,7 @@ const Header: React.FC = () => {
               }}
               startIcon={<SearchIcon />}
             >
-              Search
+              {isMobile ? '' : 'Rechercher'}
             </Button>
           </Box>
         </Toolbar>
