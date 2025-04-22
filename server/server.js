@@ -33,9 +33,22 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+// Add more comprehensive logging
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
+// Add error handling middleware
+app.use((err, req, res, next) => {
+  console.error(`[${new Date().toISOString()}] ERROR:`, err);
+  res.status(500).json({ message: 'Server error', error: err.message });
+});
+
 // Add a default route handler for Vercel
 app.get('*', (req, res) => {
-  res.status(200).json({ message: 'HTML File Manager API is running' });
+  console.log(`[${new Date().toISOString()}] Default route handler for: ${req.url}`);
+  res.status(200).json({ message: 'WhatsApp HTML Manager API is running' });
 });
 
 // Set port and start server - Only use in development, not needed for Vercel serverless functions
